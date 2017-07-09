@@ -1,0 +1,8 @@
+c:\Users\user\Documents\app\prueba38\main\bin\MCD\Debug\netcoreapp1.1\prueba38.deps.json
+c:\Users\user\Documents\app\prueba38\main\bin\MCD\Debug\netcoreapp1.1\prueba38.runtimeconfig.json
+c:\Users\user\Documents\app\prueba38\main\bin\MCD\Debug\netcoreapp1.1\prueba38.runtimeconfig.dev.json
+c:\Users\user\Documents\app\prueba38\main\bin\MCD\Debug\netcoreapp1.1\prueba38.dll
+c:\Users\user\Documents\app\prueba38\main\bin\MCD\Debug\netcoreapp1.1\prueba38.pdb
+c:\Users\user\Documents\app\prueba38\main\obj\MCD\Debug\netcoreapp1.1\prueba38.AssemblyInfo.cs
+c:\Users\user\Documents\app\prueba38\main\obj\MCD\Debug\netcoreapp1.1\prueba38.dll
+c:\Users\user\Documents\app\prueba38\main\obj\MCD\Debug\netcoreapp1.1\prueba38.pdb

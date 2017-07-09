@@ -1,0 +1,14 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "proyecto prueba asp.net mvc core",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen-grupo" : "dotnet aspnet-codegenerator controller -name GrupoController -f -m Grupo -dc DbProducto --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries",
+    "gen-familia" : "dotnet aspnet-codegenerator controller -name FamiliaController -f -m Familia -dc DbProducto --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries",
+    "gen-producto" :"dotnet aspnet-codegenerator controller -name ProductoController -f -m Producto -dc DbProducto --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries"  
+  },
+  "author": "",
+  "license": "ISC"
+}

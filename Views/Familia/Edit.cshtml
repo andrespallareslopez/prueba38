@@ -1,0 +1,58 @@
+@model prueba38.Models.Familia
+
+@functions{
+    public string setDropdown(){
+        return "<select></select>";
+    }
+}
+
+@{
+    ViewData["Title"] = "Edit";
+    Func<dynamic,Microsoft.AspNetCore.Mvc.Razor.HelperResult> foo = @<p>prueba para helper</p>;
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Familia</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ID" />
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="IDGrupo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="IDGrupo" class="form-control" />
+                <span asp-validation-for="IDGrupo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group" >
+           <label class="col-md-2 control-label" ></label>
+           <div class="col-md-10" >
+               @Html.DropDownList("grupoId",(SelectList)ViewBag.grupos,"--Select--",new {@class="form-control"})
+           </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+    @foo(null)
+    @person(null)
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

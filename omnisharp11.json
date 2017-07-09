@@ -1,0 +1,6 @@
+{
+    "msbuild": {
+        "MSBuildSDKsPath" :"C:\\Program Files\\dotnet\\sdk\\1.0.4",
+        "msbuildextensionspath": "C:\\Program Files\\dotnet\\sdk\\1.0.4"
+    }
+}

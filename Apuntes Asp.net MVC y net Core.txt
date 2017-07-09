@@ -1,0 +1,311 @@
+Apuntes Asp.Net Core
+---------------------
+
+Get Started with Visual Studio Code
+
+https://docs.microsoft.com/en-us/dotnet/csharp/getting-started/with-visual-studio-code#debug
+
+--------------------
+ASP.NET Core: escritura de aplicaciones con Visual Studio Code y Entity Framework
+
+https://msdn.microsoft.com/es-es/magazine/mt767698.aspx
+
+-----------------------------------------------------
+
+Create a Web API with ASP.NET Core MVC and Visual Studio Code on Linux, macOS, and Windows
+
+https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-vsc
+
+-------------------------------------------------------
+Create an ASP.NET Core MVC app with Visual Studio Code
+
+Este es el tutorial que he ido siguiendo
+
+https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app-xplat/
+
+-----------------------------------------------
+
+ASP.NET MVC view – Bootstrap styles for HTML select and input elements
+
+Explica diferentes formas de crear en la view select list y demas elementos html con bootstrap
+con ejemplo de codigo html y razor.
+
+https://petermcintyre.com/topics/asp-net-mvc-view-selectlist-bootstrap-styling/
+
+---------------------------------------------------------
+
+Reading Related Data with the Entity Framework in an ASP.NET MVC Application
+
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
+
+-----------------------
+
+Configuring a DbContext
+
+Para configurar en EF version core el contexto en Entity Framework al detalle y con diferentes
+puntos de vista y opciones
+
+https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext
+
+------------------------
+
+Create Custom HTML Helper in ASP.Net Core
+
+https://stackoverflow.com/questions/42039269/create-custom-html-helper-in-asp-net-core
+
+--------------------------
+
+10 ways to extend your Razor views in ASP.​NET core - the complete overview
+
+Muy Interesante en como extender las vista en asp.net core y en asp.net mvc en general.
+
+http://asp.net-hacker.rocks/2016/02/18/extending-razor-views.html
+
+---------------------------
+
+Creating Custom Tag Helper in ASP.NET Core
+
+http://www.dotnetfunda.com/articles/show/3458/creating-custom-tag-helper-in-aspnet-core
+
+----------------------------------
+
+Custom HTML Helper In ASP.NET MVC
+
+En este tutorial explican todas las maneras de hacer un Html helper, desde
+utilizando solo C# con metodo estatico de una clase, hasta un metodo extensor a la clase htmlHelper o similiar
+o utilizando sintaxis razor y poniendo todo los helpers creados de esta  manera en un archivo .cshtml 
+
+http://www.c-sharpcorner.com/article/custom-html-helper-in-Asp-Net-mvc/
+
+----------------------------------
+
+Cleaner Forms using Tag Helpers in ASP.NET Core MVC
+
+En este articulo explica con ejemplos claros la diferencia entre html helper y los nuevo tag helper de asp.net core.
+Expone unos ejemplos claros sobre la diferencia de escritura y sobre todo los helpers aplicados a formularios.
+
+
+http://www.davepaquette.com/archive/2015/05/11/cleaner-forms-using-tag-helpers-in-mvc6.aspx
+
+------------------------------------
+
+Inline and Custom HTML Helpers in ASP.NET MVC
+
+En este articulo explican que hay tres categorias de Html Helpers:
+
+1. Inline HTML Helpers
+
+2. Built-in HTML Helpers
+
+3. Custom HTML Helpers
+
+https://dzone.com/articles/inline-and-custom-html-helpers-in-aspnet-mvc
+
+-----------------------------
+
+Razor syntax
+
+Articulo que explica en produndidad la sintaxis razor en Asp.net Core.
+
+Tiene la directiva @functions {...} y tambien la directiva razor @inject{...}
+
+@functions{
+    public string GetHello()
+    {
+        return "Hello";
+    }
+}
+
+<div>From method: @GetHello()</div>
+
+https://docs.microsoft.com/es-es/aspnet/core/mvc/views/razor
+
+-----------------------------
+
+Add an HTML-formatted constructions support into Razor instead of the removed @helper directive
+
+Formas de generar un html helper desde la plantilla razor .cshtml:
+___________________________________________________________________
+@{
+Func<string, int, IEnumerable<string>, HelperResult> showThing = (name, age, tags) => new Func<object, HelperResult>(@<text>
+<div>
+  <h3>@name</h3>
+  <p>Age: @age</p>
+  <ul>
+    @foreach (var tag in tags)
+    {
+      <li>@tag</li>
+    }
+  </ul>
+</div>
+</text>)(null);
+}
+
+<div>
+  @showThing("Name", 1, new[] { "a", "b", "c", })
+</div>
+
+Tambien se podria este otro:
+____________________________
+Func<dynamic, IHtmlContent> foo = @<p>Some HTML</p>;
+
+@foo(null)
+
+https://github.com/aspnet/Razor/issues/715
+
+Otra forma:
+___________
+var firstName = "John";
+var lastName = "Doe";
+
+Func<int, IHtmlContent> person = @<p>@firstName @lastName is @item years old.</p>;
+
+@person(30)
+
+Otra forma:
+_________
+@functions
+{
+
+IHtmlContent person(String firstName, String lastName, Int32 age)
+{
+Func<dynamic, IHtmlContent> result = @<p>@firstName @lastName is @age years old.</p>;
+return result(null);
+}
+
+}
+
+@person("John", "Doe", 30)
+
+
+Otra Forma:
+___________
+
+@functions {
+
+public HtmlString GetTableHeader1(String className)
+{
+HtmlString result = <text>
+<tr class="@className">
+<td title="abc">one</td>
+<td title="xyz">two</td>
+</tr>
+</text>;
+return result;
+}
+
+public HtmlString GetTableHeader2(String className)
+{
+HtmlString result = new HtmlString(@"
+<tr class=""" + Html.Encode(className) + @""">
+<td title=""abc"">one</td>
+<td title=""xyz"">two</td>
+</tr>
+");
+return result;
+}
+
+}
+----------------------------------
+Introduction to Razor Pages in ASP.NET Core
+
+Articulo interesante de la ayuda oficial de microsoft donde como utilizar @functions{...} person
+tambien utiliza @Page una nueva directiva, se pueden hacer paginas como esta:
+
+@page
+
+@{
+    var message = "Hello, World!";
+}
+
+<html>
+<body>
+    <p>@message</p>
+</body>
+</html>
+
+Y como esta:
+
+@page
+@using MyApp
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject ApplicationDbContext Db
+
+@functions {
+    [BindProperty]
+    public Contact Contact { get; set; }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (ModelState.IsValid)
+        {
+            Db.Contacts.Add(Contact);
+            await Db.SaveChangesAsync();
+            return RedirectToPage();
+        }
+
+        return Page();
+        ______________ 
+    }
+}
+
+<html>
+<body>
+    <p>Enter your contact info here and we will email you about 
+         our fine products!</p> 
+    <div asp-validation-summary="All"></div>
+    <form method="POST">
+      <div>Name: <input asp-for="Contact.Name" /></div>
+      <div>Email: <input asp-for="Contact.Email" /></div>
+      <input type="submit" />
+    </form>
+</body>
+</html>
+
+Donde remarco return Page() es lo interesante, aqui la accion y plantilla razor en el mismo archivo razor.
+
+https://docs.microsoft.com/en-us/aspnet/core/mvc/razor-pages/
+
+---------------------------------
+
+Layout
+Explicacion de Layout en Asp.net Core.
+Hay una imagen de un layout en la documentacion oficial de asp.net core.
+
+https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout
+
+----------------------------------
+
+precompilation in ASP.NET Core
+
+Aqui habla de como establecer en el archivo de proyecto .csproj establecer
+las referencias necesarias para que se precompilen las vistas y por tanto
+obtendremos un mayor rendimiento.
+
+
+
+https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation
+
+----------------------------------
+
+Extending Razor Views in ASP.NET Core
+
+@inherits BaseView
+<div>
+    ...
+</div>
+
+public abstract class BaseView : RazorPage<object>
+{              
+    public bool IsAuthenticated()
+    {
+        return Context.User.Identity.IsAuthenticated;
+    }
+}
+
+
+http://odetocode.com/blogs/scott/archive/2016/02/04/extending-razor-views-in-asp-net-core.aspx
+
+-------------------------------------------
+
